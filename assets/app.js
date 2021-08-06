@@ -14,6 +14,9 @@ import { Tooltip, Toast, Popover } from 'bootstrap';
 import 'bootstrap/dist/js/bootstrap'
 import 'popper.js/dist/popper'
 import 'chart.js/dist/chart'
+import './js/index-charts'
+import './js/app'
+import './plugins/fontawesome/js/all'
 
 // start the Stimulus application
 import './bootstrap';
