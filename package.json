@@ -24,9 +24,16 @@
         "autoprefixer": "^10.3.1",
         "bootstrap": "^5.0.0-beta3",
         "chart.js": "^3.5.0",
+        "countup.js": "^2.0.8",
         "dashjs": "^4.0.1",
+        "glightbox": "^3.0.9",
+        "imagesloaded": "^4.1.4",
+        "isotope": "^1.0.0-alpha.3",
+        "isotope-layout": "^3.0.6",
         "popper.js": "^1.14.3",
         "postcss-loader": "^6.1.1",
-        "react-chartjs-2": "^3.0.4"
+        "react-chartjs-2": "^3.0.4",
+        "tiny-slider": "^2.9.3",
+        "wowjs": "^1.1.3"
     }
 }

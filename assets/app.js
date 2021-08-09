@@ -17,6 +17,13 @@ import 'chart.js/dist/chart'
 import './js/index-charts'
 import './js/app'
 import './plugins/fontawesome/js/all'
+import 'wowjs/dist/wow'
+import 'tiny-slider/dist/min/tiny-slider'
+import 'glightbox/dist/js/glightbox'
+import 'countup.js/dist/countUp'
+import 'imagesloaded/imagesloaded'
+import 'isotope-layout/js/isotope'
+
 
 // start the Stimulus application
 import './bootstrap';
