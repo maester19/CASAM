@@ -1,0 +1,18 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+<div class="app-wrapper">
+	    
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            <h1>Create new User</h1>
+
+            {{ include('Admin/user/_form.html.twig') }}
+
+            <a href="{{ path('user-index') }}">back to list</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

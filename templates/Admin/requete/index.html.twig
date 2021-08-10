@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Requete index{% endblock %}
+
+{% block body %}
+    <h1>Requete index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Created_at</th>
+                <th>Etat</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for requete in requetes %}
+            <tr>
+                <td>{{ requete.id }}</td>
+                <td>{{ requete.titre }}</td>
+                <td>{{ requete.createdAt ? requete.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ requete.etat }}</td>
+                <td>{{ requete.description }}</td>
+                <td>
+                    <a href="{{ path('requete_show', {'id': requete.id}) }}">show</a>
+                    <a href="{{ path('requete_edit', {'id': requete.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('requete_new') }}">Create new</a>
+{% endblock %}

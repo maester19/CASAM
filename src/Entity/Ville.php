@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Ville
 {
+    const TT = [
+        "public" => "public",
+        "priver" => "priver"
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

@@ -1,0 +1,37 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+{% block title %}Ville{% endblock %}
+
+{% block body %}
+<div class="app-wrapper">
+	    
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            <h1>Ville</h1>
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ ville.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ ville.nom }}</td>
+                    </tr>
+                    <tr>
+                        <th>Pays</th>
+                        <td>{{ ville.pays }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="{{ path('ville-index') }}">back to list</a>
+
+            <a href="{{ path('ville-edit', {'id': ville.id}) }}">edit</a>
+
+            {{ include('Admin/ville/_delete_form.html.twig') }}
+        </div>
+    </div>
+</div>
+{% endblock %}

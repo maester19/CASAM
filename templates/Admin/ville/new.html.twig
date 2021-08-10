@@ -1,0 +1,18 @@
+{% extends 'Admin/baseAdmin.html.twig' %}
+
+{% block title %}New Ville{% endblock %}
+
+{% block body %}
+<div class="app-wrapper">
+	    
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            <h1>Create new Ville</h1>
+
+            {{ include('Admin/ville/_form.html.twig') }}
+
+            <a href="{{ path('ville-index') }}">back to list</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
