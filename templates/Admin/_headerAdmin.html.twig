@@ -44,7 +44,7 @@
         <div class="sidepanel-inner d-flex flex-column">
             <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
             <div class="app-branding">
-                <a class="app-logo" href="index.html"><img class="logo-icon me-2" src="{{ asset('images/app-logo.svg') }}" alt="logo"><span class="logo-text">CASAM</span></a>
+                <a class="app-logo" href="{{ path('home') }}"><img class="logo-icon me-2" src="{{ asset('images/app-logo.svg') }}" alt="logo"><span class="logo-text">CASAM</span></a>
 
             </div><!--//app-branding-->  
             
@@ -106,7 +106,7 @@
                         </a><!--//nav-link-->
                         <div id="submenu-2" class="collapse submenu submenu-2" data-bs-parent="#menu-accordion">
                             <ul class="submenu-list list-unstyled">
-                                <li class="submenu-item"><a class="submenu-link" href="login.html">liste</a></li>
+                                <li class="submenu-item"><a class="submenu-link" href="{{ path('admin-requete-index') }}">liste</a></li>
                                 <li class="submenu-item"><a class="submenu-link" href="signup.html">Signup</a></li>
                                 <li class="submenu-item"><a class="submenu-link" href="reset-password.html">Reset password</a></li>
                                 <li class="submenu-item"><a class="submenu-link" href="404.html">404 page</a></li>

@@ -1,12 +1,11 @@
-{% extends 'Admin/baseAdmin.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}New Requete{% endblock %}
 
 {% block body %}
-
     <h1>Create new Requete</h1>
 
     {{ include('requete/_form.html.twig') }}
 
-    <a href="{{ path('admin-requete-index') }}">back to list</a>
+    <a href="{{ path('requete-index') }}">back to list</a>
 {% endblock %}

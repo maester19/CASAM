@@ -10,6 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Requete
 {
+    const ETAT = [
+        "send" => 'send',
+        'Running' => 'Rinning',
+        'end' => 'end',
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue

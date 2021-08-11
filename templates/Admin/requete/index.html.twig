@@ -1,41 +1,229 @@
-{% extends 'base.html.twig' %}
+{% extends 'Admin/baseAdmin.html.twig' %}
 
 {% block title %}Requete index{% endblock %}
 
 {% block body %}
-    <h1>Requete index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Created_at</th>
-                <th>Etat</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for requete in requetes %}
-            <tr>
-                <td>{{ requete.id }}</td>
-                <td>{{ requete.titre }}</td>
-                <td>{{ requete.createdAt ? requete.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ requete.etat }}</td>
-                <td>{{ requete.description }}</td>
-                <td>
-                    <a href="{{ path('requete_show', {'id': requete.id}) }}">show</a>
-                    <a href="{{ path('requete_edit', {'id': requete.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('requete_new') }}">Create new</a>
+<div class="app-wrapper">
+	    
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            
+            <div class="row g-3 mb-4 align-items-center justify-content-between">
+                <div class="col-auto">
+                    <h1 class="app-page-title mb-0">Gestion -> requete</h1>
+                </div>
+                <div class="col-auto">
+                     <div class="page-utilities">
+                        <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
+                            <div class="col-auto">
+                                <form class="table-search-form row gx-1 align-items-center">
+                                    <div class="col-auto">
+                                        <input type="text" id="search-orders" name="searchorders" class="form-control search-orders" placeholder="Search">
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" class="btn app-btn-secondary">Search</button>
+                                    </div>
+                                </form>
+                                
+                            </div><!--//col-->
+                            <div class="col-auto">
+                                
+                                <select class="form-select w-auto" >
+                                      <option selected value="option-1">All</option>
+                                      <option value="option-2">This week</option>
+                                      <option value="option-3">This month</option>
+                                      <option value="option-4">Last 3 months</option>
+                                      
+                                </select>
+                            </div>
+                        </div><!--//row-->
+                    </div><!--//table-utilities-->
+                </div><!--//col-auto-->
+            </div><!--//row-->
+           
+            
+            <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+                <a class="flex-sm-fill text-sm-center nav-link active" id="orders-all-tab" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
+                <a class="flex-sm-fill text-sm-center nav-link"  id="orders-paid-tab" data-bs-toggle="tab" href="#orders-paid" role="tab" aria-controls="orders-paid" aria-selected="false">Send</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-pending-tab" data-bs-toggle="tab" href="#orders-pending" role="tab" aria-controls="orders-pending" aria-selected="false">Running</a>
+                <a class="flex-sm-fill text-sm-center nav-link" id="orders-cancelled-tab" data-bs-toggle="tab" href="#orders-cancelled" role="tab" aria-controls="orders-cancelled" aria-selected="false">End</a>
+            </nav>
+            
+            
+            <div class="tab-content" id="orders-table-tab-content">
+                <div class="tab-pane fade show active" id="orders-all" role="tabpanel" aria-labelledby="orders-all-tab">
+                    <div class="app-card app-card-orders-table shadow-sm mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                {% for requet in requetes %}
+                                    <div class="app-card-header px-4 py-3">
+                                        <div class="row g-3 align-items-center">
+                                            <div class="col-12 col-lg-auto text-center text-lg-start">						        
+                                                <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
+                                            </div><!--//col-->
+                                            <div class="col-12 col-lg-auto text-center text-lg-start">
+                                                <div class="notification-type mb-2"><span class="badge bg-info">{{ requet.etat }}</span></div>
+                                                <h4 class="notification-title mb-1">{{ requet.titre }}</h4>
+                                                
+                                                <ul class="notification-meta list-inline mb-0">
+                                                    <li class="list-inline-item">{{ requet.createdAt ? requet.createdAt|date('Y-m-d H:i:s') : '' }} |</li>
+                                                    <li class="list-inline-item">{{ requet.Auteur.nom }}|</li>
+                                                    <li class="list-inline-item">{{ requet.Auteur.prenom }}</li>
+                                                </ul>
+                                        
+                                            </div><!--//col-->
+                                        </div><!--//row-->
+                                    </div><!--//app-card-header-->
+                                    <div class="app-card-body p-4">
+                                        <div class="notification-content">{{ requet.description }}</div>
+                                    </div><!--//app-card-body-->
+                                    <hr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="6">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                            </div><!--//table-responsive-->
+                           
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                    <nav class="app-pagination">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav><!--//app-pagination-->
+                    
+                </div><!--//tab-pane-->
+                
+                <div class="tab-pane fade" id="orders-paid" role="tabpanel" aria-labelledby="orders-paid-tab">
+                    <div class="app-card app-card-orders-table mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                {% for requet in requetes %}
+                                    {% if requet.etat == 'send' %}
+                                    <div class="app-card-header px-4 py-3">
+                                        <div class="row g-3 align-items-center">
+                                            <div class="col-12 col-lg-auto text-center text-lg-start">						        
+                                                <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
+                                            </div><!--//col-->
+                                            <div class="col-12 col-lg-auto text-center text-lg-start">
+                                                <div class="notification-type mb-2"><span class="badge bg-info">{{ requet.etat }}</span></div>
+                                                <h4 class="notification-title mb-1">{{ requet.titre }}</h4>
+                                                
+                                                <ul class="notification-meta list-inline mb-0">
+                                                    <li class="list-inline-item">{{ requet.createdAt ? requet.createdAt|date('Y-m-d H:i:s') : '' }} |</li>
+                                                    <li class="list-inline-item">{{ requet.Auteur.nom }}|</li>
+                                                    <li class="list-inline-item">{{ requet.Auteur.prenom }}</li>
+                                                </ul>
+                                        
+                                            </div><!--//col-->
+                                        </div><!--//row-->
+                                    </div><!--//app-card-header-->
+                                    <div class="app-card-body p-4">
+                                        <div class="notification-content">{{ requet.description }}</div>
+                                    </div><!--//app-card-body-->
+                                    <hr>
+                                    {% endif %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="6">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                            </div><!--//table-responsive-->
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                </div><!--//tab-pane-->
+                
+                <div class="tab-pane fade" id="orders-pending" role="tabpanel" aria-labelledby="orders-pending-tab">
+                    <div class="app-card app-card-orders-table mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                {% for requet in requetes %}
+                                    {% if requet.etat == 'running' %}
+                                    <div class="app-card-header px-4 py-3">
+                                        <div class="row g-3 align-items-center">
+                                            <div class="col-12 col-lg-auto text-center text-lg-start">						        
+                                                <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
+                                            </div><!--//col-->
+                                            <div class="col-12 col-lg-auto text-center text-lg-start">
+                                                <div class="notification-type mb-2"><span class="badge bg-info">{{ requet.etat }}</span></div>
+                                                <h4 class="notification-title mb-1">{{ requet.titre }}</h4>
+                                                
+                                                <ul class="notification-meta list-inline mb-0">
+                                                    <li class="list-inline-item">{{ requet.createdAt ? requet.createdAt|date('Y-m-d H:i:s') : '' }} |</li>
+                                                    <li class="list-inline-item">{{ requet.Auteur.nom }}|</li>
+                                                    <li class="list-inline-item">{{ requet.Auteur.prenom }}</li>
+                                                </ul>
+                                        
+                                            </div><!--//col-->
+                                        </div><!--//row-->
+                                    </div><!--//app-card-header-->
+                                    <div class="app-card-body p-4">
+                                        <div class="notification-content">{{ requet.description }}</div>
+                                    </div><!--//app-card-body-->
+                                    <hr>
+                                    {% endif %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="6">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                            </div><!--//table-responsive-->
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                </div><!--//tab-pane-->
+                <div class="tab-pane fade" id="orders-cancelled" role="tabpanel" aria-labelledby="orders-cancelled-tab">
+                    <div class="app-card app-card-orders-table mb-5">
+                        <div class="app-card-body">
+                            <div class="table-responsive">
+                                {% for requet in requetes %}
+                                    {% if requet.etat == 'end' %}
+                                    <div class="app-card-header px-4 py-3">
+                                        <div class="row g-3 align-items-center">
+                                            <div class="col-12 col-lg-auto text-center text-lg-start">						        
+                                                <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
+                                            </div><!--//col-->
+                                            <div class="col-12 col-lg-auto text-center text-lg-start">
+                                                <div class="notification-type mb-2"><span class="badge bg-info">{{ requet.etat }}</span></div>
+                                                <h4 class="notification-title mb-1">{{ requet.titre }}</h4>
+                                                
+                                                <ul class="notification-meta list-inline mb-0">
+                                                    <li class="list-inline-item">{{ requet.createdAt ? requet.createdAt|date('Y-m-d H:i:s') : '' }} |</li>
+                                                    <li class="list-inline-item">{{ requet.Auteur.nom }}|</li>
+                                                    <li class="list-inline-item">{{ requet.Auteur.prenom }}</li>
+                                                </ul>
+                                        
+                                            </div><!--//col-->
+                                        </div><!--//row-->
+                                    </div><!--//app-card-header-->
+                                    <div class="app-card-body p-4">
+                                        <div class="notification-content">{{ requet.description }}</div>
+                                    </div><!--//app-card-body-->
+                                    <hr>
+                                    {% endif %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan="6">no records found</td>
+                                    </tr>
+                                {% endfor %}
+                            </div><!--//table-responsive-->
+                        </div><!--//app-card-body-->		
+                    </div><!--//app-card-->
+                </div><!--//tab-pane-->
+            </div><!--//tab-content-->
+            
+            
+            
+        </div><!--//container-fluid-->
+    </div><!--//app-content-->
 {% endblock %}
+
+

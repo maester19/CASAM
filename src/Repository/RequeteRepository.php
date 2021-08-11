@@ -19,6 +19,18 @@ class RequeteRepository extends ServiceEntityRepository
         parent::__construct($registry, Requete::class);
     }
 
+    /**
+     * @return Requete[]
+     */
+    public function last()
+    {
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Requete[] Returns an array of Requete objects
     //  */

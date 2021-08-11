@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Requete;
 use App\Entity\User;
+use App\Form\Requete1Type;
 use App\Form\RequeteType;
 use App\Repository\RequeteRepository;
 use DateTime;
@@ -13,27 +14,28 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/requete")
+ * @Route("/admin/requete")
  */
-class RequeteController extends AbstractController
+class AdminRequeteController extends AbstractController
 {
     /**
-     * @Route("/", name="requete-index", methods={"GET"})
+     * @Route("/", name="admin-requete-index", methods={"GET", "POST"})
      */
     public function index(RequeteRepository $requeteRepository): Response
     {
-        return $this->render('requete/index.html.twig', [
+       
+        return $this->renderForm('Admin/requete/index.html.twig', [
             'requetes' => $requeteRepository->last(),
         ]);
     }
 
     /**
-     * @Route("/{id}/new", name="requete-new", methods={"GET","POST"})
+     * @Route("/{id}/new", name="admin-requete-new", methods={"GET","POST"})
      */
     public function new(Request $request, User $user): Response
     {
         $requete = new Requete();
-        $form = $this->createForm(RequeteType::class, $requete);
+        $form = $this->createForm(Requete1Type::class, $requete);
         $requete->setCreatedAt(new DateTime());
         $requete->setAuteur($user);
         $requete->setEtat('send');
@@ -54,7 +56,7 @@ class RequeteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="requete-show", methods={"GET"})
+     * @Route("/{id}", name="admin-requete-show", methods={"GET"})
      */
     public function show(Requete $requete): Response
     {
@@ -64,11 +66,11 @@ class RequeteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="requete-edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="admin-requete-edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Requete $requete): Response
     {
-        $form = $this->createForm(RequeteType::class, $requete);
+        $form = $this->createForm(Requete1Type::class, $requete);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -84,7 +86,7 @@ class RequeteController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="requete-delete", methods={"POST"})
+     * @Route("/{id}", name="admin-requete-delete", methods={"POST"})
      */
     public function delete(Request $request, Requete $requete): Response
     {

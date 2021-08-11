@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Requete index{% endblock %}
+
+{% block body %}
+    <h1>Requete index</h1>
+<div class="app-card container app-card-notification shadow-sm mb-4">
+    {% for requete in requetes %}
+        {% if requete.auteur == app.user %}
+        <div class="app-card-header px-4 py-3">
+            <div class="row g-3 align-items-center">
+                <div class="col-12 col-lg-auto text-center text-lg-start">						        
+                    <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
+                </div><!--//col-->
+                <div class="col-12 col-lg-auto text-center text-lg-start">
+                    <div class="notification-type mb-2"><span class="badge bg-info">{{ requete.etat }}</span></div>
+                    <h4 class="notification-title mb-1">{{ requete.titre }}</h4>
+                    
+                    <ul class="notification-meta list-inline mb-0">
+                        <li class="list-inline-item">{{ requete.createdAt ? requete.createdAt|date('Y-m-d H:i:s') : '' }}</li>
+                        <li class="list-inline-item">{{ requete.Auteur.nom }}|</li>
+                        <li class="list-inline-item">{{ requete.Auteur.prenom }}</li>
+                    </ul>
+               
+                </div><!--//col-->
+            </div><!--//row-->
+        </div><!--//app-card-header-->
+        <div class="app-card-body p-4">
+            <div class="notification-content">{{ requete.description }}</div>
+        </div><!--//app-card-body-->
+        <hr>
+        {% endif %}
+    {% else %}
+        <tr>
+            <td colspan="6">no records found</td>
+        </tr>
+    {% endfor %}
+</div>
+    <a href="{{ path('requete-new', {'id': app.user.id}) }}">Create new</a>
+{% endblock %}
+    
