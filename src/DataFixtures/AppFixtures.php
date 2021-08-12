@@ -28,14 +28,14 @@ class AppFixtures extends Fixture
 
         $ville = new Ville();
 
-        $ville->setNom($faker->word())
+        $ville->setNom($faker->city())
             ->setPays($faker->country()); 
             
         $manager->persist($ville);
 
         $etablissement = new Etablissement();
 
-        $etablissement->setNom($faker->word())
+        $etablissement->setNom($faker->city())
                 ->setDescription($faker->word(9, true))
                 ->setType("public")
                 ->setVille($ville);
@@ -45,8 +45,8 @@ class AppFixtures extends Fixture
         $user = New User();
 
         $user->setEmail('user@mail.com')
-            ->setPrenom($faker->word())
-            ->setNom($faker->word())
+            ->setPrenom($faker->lastName())
+            ->setNom($faker->firstName())
             ->setNiveau(3)
             ->setRoles(["ROLE_ADMIN"])
             ->setFiliere($faker->word(2, true))
