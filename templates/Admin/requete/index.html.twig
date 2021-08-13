@@ -10,7 +10,7 @@
             
             <div class="row g-3 mb-4 align-items-center justify-content-between">
                 <div class="col-auto">
-                    <h1 class="app-page-title mb-0">Gestion -> requete</h1>
+                    <h1 class="app-page-title mb-0">Requete -> Liste</h1>
                 </div>
                 <div class="col-auto">
                      <div class="page-utilities">
@@ -59,16 +59,28 @@
                                     <div class="app-card-header px-4 py-3">
                                         <div class="row g-3 align-items-center">
                                             <div class="col-12 col-lg-auto text-center text-lg-start">						        
-                                                <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
+                                                <a href="{{ path('user-show', {'id': requet.auteur.id}) }} ">
+                                                    <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
+                                                </a>
                                             </div><!--//col-->
                                             <div class="col-12 col-lg-auto text-center text-lg-start">
-                                                <div class="notification-type mb-2"><span class="badge bg-info">{{ requet.etat }}</span></div>
+                                                {% if requet.etat == "send" %}
+                                                    <div class="notification-type mb-2"><span class="badge bg-info">{{ requet.etat }}</span></div>
+                                                {% endif %}
+                                                {% if requet.etat == "running" %}
+                                                    <div class="notification-type mb-2"><span class="badge bg-warning">{{ requet.etat }}</span></div>
+                                                {% endif %}
+                                                {% if requet.etat == "end" %}
+                                                    <div class="notification-type mb-2"><span class="badge bg-success">{{ requet.etat }}</span></div>
+                                                {% endif %}
                                                 <h4 class="notification-title mb-1">{{ requet.titre }}</h4>
                                                 
                                                 <ul class="notification-meta list-inline mb-0">
                                                     <li class="list-inline-item">{{ requet.createdAt ? requet.createdAt|date('Y-m-d H:i:s') : '' }} |</li>
-                                                    <li class="list-inline-item">{{ requet.Auteur.nom }}|</li>
-                                                    <li class="list-inline-item">{{ requet.Auteur.prenom }}</li>
+                                                    <a href="{{ path('user-show', {'id': requet.auteur.id}) }} ">
+                                                        <li class="list-inline-item">{{ requet.Auteur.nom }}</li>
+                                                        <li class="list-inline-item">{{ requet.Auteur.prenom }}</li>
+                                                    </a>
                                                 </ul>
                                         
                                             </div><!--//col-->
@@ -77,6 +89,7 @@
                                     <div class="app-card-body p-4">
                                         <div class="notification-content">{{ requet.description }}</div>
                                     </div><!--//app-card-body-->
+                                    <a href="{{ path('admin-requete-edit', {'id':requet.id}) }} " class="btn btn-outline-primary">changer le status</a>
                                     <hr>
                                 {% else %}
                                     <tr>
@@ -112,7 +125,9 @@
                                     <div class="app-card-header px-4 py-3">
                                         <div class="row g-3 align-items-center">
                                             <div class="col-12 col-lg-auto text-center text-lg-start">						        
-                                                <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
+                                                <a href="{{ path('user-show', {'id': requet.auteur.id}) }} ">
+                                                    <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
+                                                </a>
                                             </div><!--//col-->
                                             <div class="col-12 col-lg-auto text-center text-lg-start">
                                                 <div class="notification-type mb-2"><span class="badge bg-info">{{ requet.etat }}</span></div>
@@ -120,8 +135,10 @@
                                                 
                                                 <ul class="notification-meta list-inline mb-0">
                                                     <li class="list-inline-item">{{ requet.createdAt ? requet.createdAt|date('Y-m-d H:i:s') : '' }} |</li>
-                                                    <li class="list-inline-item">{{ requet.Auteur.nom }}|</li>
-                                                    <li class="list-inline-item">{{ requet.Auteur.prenom }}</li>
+                                                    <a href="{{ path('user-show', {'id': requet.auteur.id}) }} ">
+                                                        <li class="list-inline-item">{{ requet.Auteur.nom }}</li>
+                                                        <li class="list-inline-item">{{ requet.Auteur.prenom }}</li>
+                                                    </a>
                                                 </ul>
                                         
                                             </div><!--//col-->
@@ -151,16 +168,20 @@
                                     <div class="app-card-header px-4 py-3">
                                         <div class="row g-3 align-items-center">
                                             <div class="col-12 col-lg-auto text-center text-lg-start">						        
-                                                <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
+                                                <a href="{{ path('user-show', {'id': requet.auteur.id}) }} ">
+                                                    <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
+                                                </a>
                                             </div><!--//col-->
                                             <div class="col-12 col-lg-auto text-center text-lg-start">
-                                                <div class="notification-type mb-2"><span class="badge bg-info">{{ requet.etat }}</span></div>
+                                                <div class="notification-type mb-2"><span class="badge bg-warning">{{ requet.etat }}</span></div>
                                                 <h4 class="notification-title mb-1">{{ requet.titre }}</h4>
                                                 
                                                 <ul class="notification-meta list-inline mb-0">
                                                     <li class="list-inline-item">{{ requet.createdAt ? requet.createdAt|date('Y-m-d H:i:s') : '' }} |</li>
-                                                    <li class="list-inline-item">{{ requet.Auteur.nom }}|</li>
-                                                    <li class="list-inline-item">{{ requet.Auteur.prenom }}</li>
+                                                    <a href="{{ path('user-show', {'id': requet.auteur.id}) }} ">
+                                                        <li class="list-inline-item">{{ requet.Auteur.nom }}</li>
+                                                        <li class="list-inline-item">{{ requet.Auteur.prenom }}</li>
+                                                    </a>
                                                 </ul>
                                         
                                             </div><!--//col-->
@@ -192,7 +213,7 @@
                                                 <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
                                             </div><!--//col-->
                                             <div class="col-12 col-lg-auto text-center text-lg-start">
-                                                <div class="notification-type mb-2"><span class="badge bg-info">{{ requet.etat }}</span></div>
+                                                <div class="notification-type mb-2"><span class="badge bg-success">{{ requet.etat }}</span></div>
                                                 <h4 class="notification-title mb-1">{{ requet.titre }}</h4>
                                                 
                                                 <ul class="notification-meta list-inline mb-0">

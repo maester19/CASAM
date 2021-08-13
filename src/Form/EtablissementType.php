@@ -15,9 +15,6 @@ class EtablissementType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('description')
-            ->add('type')
             ->add('type', ChoiceType::class, [
                 'choices' => $this->getChoice()
             ])

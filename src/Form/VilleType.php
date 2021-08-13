@@ -12,8 +12,8 @@ class VilleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('pays')
+            // ->add('nom')
+            // ->add('pays')
         ;
     }
 

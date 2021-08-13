@@ -23,8 +23,7 @@ class AdminRequeteController extends AbstractController
      */
     public function index(RequeteRepository $requeteRepository): Response
     {
-       
-        return $this->renderForm('Admin/requete/index.html.twig', [
+       return $this->renderForm('Admin/requete/index.html.twig', [
             'requetes' => $requeteRepository->last(),
         ]);
     }
@@ -46,10 +45,10 @@ class AdminRequeteController extends AbstractController
             $entityManager->persist($requete);
             $entityManager->flush();
 
-            return $this->redirectToRoute('requete-index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('Admin/requete-index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('requete/new.html.twig', [
+        return $this->renderForm('Admin/requete/new.html.twig', [
             'requete' => $requete,
             'form' => $form,
         ]);
@@ -74,12 +73,14 @@ class AdminRequeteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $request->request->all();
+            $requete->setEtat($data['etat']);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('requete-index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin-requete-index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('requete/edit.html.twig', [
+        return $this->renderForm('Admin/requete/edit.html.twig', [
             'requete' => $requete,
             'form' => $form,
         ]);

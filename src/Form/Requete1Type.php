@@ -13,9 +13,9 @@ class Requete1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('etat', ChoiceType::class, [
-                'choices' => $this->getChoice()
-            ])
+            // ->add('etat', ChoiceType::class, [
+            //     'choices' => $this->getChoice()
+            // ])
         ;
     }
 

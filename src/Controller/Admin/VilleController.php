@@ -35,6 +35,10 @@ class VilleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $request->request->all();
+            $ville->setNom($data['nom'])
+                ->setPays($data['pays']);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($ville);
             $entityManager->flush();
@@ -67,6 +71,10 @@ class VilleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $request->request->all();
+            $ville->setNom($data['nom'])
+                ->setPays($data['pays']);
+                
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('ville-index', [], Response::HTTP_SEE_OTHER);

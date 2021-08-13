@@ -20,15 +20,37 @@
                                 <a class="nav-link" aria-current="#" href="{{ path('actualiter') }}">Actualites</a>
                               </li>
                               {% if app.user %}
+                                {% if app.user.roles == ["ROLE_USER"] %}
+                                  <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="{{ path('profile', {'id': app.user.id }) }}" id="navbarDropdown">
+                                      profile
+                                    </a>
+                                  </li>
+                                  <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="{{ path('app_logout') }}" id="navbarDropdown">
+                                      Deconnexion
+                                    </a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">A propos</a>
+                                  </li>
+                                </ul>
+                                {% else %}
                                 <li class="nav-item dropdown">
-                                  <a class="nav-link dropdown-toggle" href="{{ path('profile', {'id': app.user.id }) }}" id="navbarDropdown">
-                                    profile
+                                  <a class="nav-link dropdown-toggle" href="{{ path('admin') }}" id="navbarDropdown">
+                                    Dashboard
+                                  </a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" href="{{ path('app_logout') }}" id="navbarDropdown">
+                                    Deconnexion
                                   </a>
                                 </li>
                                 <li class="nav-item">
                                   <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">A propos</a>
                                 </li>
                               </ul>
+                                {% endif %}
                               {% else %}
                               <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="{{ path('inscription') }}" id="navbarDropdown">

@@ -13,7 +13,15 @@
                     <img class="profile-image" src="{{ asset('images/profiles/profile-4.png') }}" alt="">
                 </div><!--//col-->
                 <div class="col-12 col-lg-auto text-center text-lg-start">
+                {% if requete.etat == "send" %}
                     <div class="notification-type mb-2"><span class="badge bg-info">{{ requete.etat }}</span></div>
+                {% endif %}
+                {% if requete.etat == "running" %}
+                    <div class="notification-type mb-2"><span class="badge bg-warning">{{ requete.etat }}</span></div>
+                {% endif %}
+                {% if requete.etat == "end" %}
+                    <div class="notification-type mb-2"><span class="badge bg-success">{{ requete.etat }}</span></div>
+                {% endif %}
                     <h4 class="notification-title mb-1">{{ requete.titre }}</h4>
                     
                     <ul class="notification-meta list-inline mb-0">

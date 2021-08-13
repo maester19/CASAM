@@ -35,6 +35,10 @@ class EtablissementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $request->request->all();
+            $etablissement->setNom($data['nom'])
+                ->setDescription($data['description']);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($etablissement);
             $entityManager->flush();
@@ -67,6 +71,10 @@ class EtablissementController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $request->request->all();
+            $etablissement->setNom($data['nom'])
+                ->setDescription($data['description']);
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('etablissement-index', [], Response::HTTP_SEE_OTHER);
