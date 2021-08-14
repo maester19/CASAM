@@ -31,7 +31,7 @@
 
 							{% if app.user %}
 								<div class="mb-3">
-									You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+									You are logged in as {{ app.user.nom }}, <a href="{{ path('app_logout') }}">Logout</a>
 								</div>
 							{% endif %}         
 							<div class="email mb-3">
@@ -52,7 +52,7 @@
 									</div><!--//col-6-->
 									<div class="col-6">
 										<div class="forgot-password text-end">
-											<a href="reset-password.html">Forgot password?</a>
+											<a href="#">Forgot password?</a>
 										</div>
 									</div><!--//col-6-->
 								</div><!--//extra-->

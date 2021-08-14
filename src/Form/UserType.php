@@ -21,6 +21,8 @@ class UserType extends AbstractType
             ->add('prenom')
             ->add('niveau')
             ->add('filiere')
+            ->add('noteVille')
+            ->add('noteEta')
             ->add('ville', EntityType::class , [
                 'class'=> Ville::class,
                 'choice_label'=> 'nom',

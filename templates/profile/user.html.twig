@@ -18,7 +18,7 @@
                       <h4>{{ user.nom }}</h4>
                       <p class="text-secondary mb-1">{{ user.email }}</p>
                       <p class="text-muted font-size-sm">{{ user.etablissement.nom }}, {{ user.ville.nom }}</p>
-                      <button class="btn btn-danger">Delete Account</button>
+                      {% include "profile/_delete_form.html.twig" %}
                       <button class="btn btn-outline-primary"><a href="{{ path('requete-new', {'id': app.user.id}) }}">New Request</a></button>
                     </div>
                   </div>
@@ -127,43 +127,34 @@
                   <div class="card h-100">
                     <div class="card-body">
                       <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Town Notation</i>Status </h6>
-                      <h4>
-                        Quel note sur 10 donner vous a votre ville (<small>cette information nous aidera pour un sondage afin d'aider d'autre personne</small> ) 
-                      </h4>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Ta Ville</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          {{ user.ville.nom }}
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Ton pays</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          {{ user.ville.pays }}
+                        </div>
+                      </div>
+                      <hr>
+                      <h5>
+                        Quel note sur 5 donner vous a votre ville (<small>cette information nous aidera pour un sondage afin d'aider d'autre personne</small> ) 
+                      </h5>
                       <br>
-                      <h4>0
-                        <input type="radio" name="tonwNotation" value="0">
-                      </h4><br>
-                      <h4>1
-                        <input type="radio" name="tonwNotation" value="1">
-                      </h4><br>
-                      <h4>2
-                        <input type="radio" name="tonwNotation" value="2">
-                       </h4><br>
-                      <h4>3
-                        <input type="radio" name="tonwNotation" value="3">
-                      </h4><br>
-                      <h4>4
-                        <input type="radio" name="tonwNotation" value="4">
-                      </h4><br>
-                      <h4>5
-                        <input type="radio" name="tonwNotation" value="5">
-                      </h4><br>
-                      <h4>6
-                        <input type="radio" name="tonwNotation" value="6">
-                      </h4><br>
-                      <h4>7
-                        <input type="radio" name="tonwNotation" value="7">
-                      </h4><br>
-                      <h4>8
-                        <input type="radio" name="tonwNotation" value="8">
-                      </h4><br>
-                      <h4>9
-                        <input type="radio" name="tonwNotation" value="9">
-                      </h4><br>
-                      <h4>10
-                        <input type="radio" name="tonwNotation" value="10">
-                      </h4><br>
+                      <h4>0<input type="radio" name="townNotation" value="0"></h4>
+                      <h4>1<input type="radio" name="townNotation" value="1"></h4>
+                      <h4>2<input type="radio" name="townNotation" value="2"></h4>
+                      <h4>3<input type="radio" name="townNotation" value="3"></h4>
+                      <h4>4<input type="radio" name="townNotation" value="4"></h4>
+                      <h4>5<input type="radio" name="townNotation" value="5"></h4><br>
                     </div>
                   </div>
                 </div>
@@ -171,43 +162,43 @@
                   <div class="card h-100">
                     <div class="card-body">
                       <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">School notation</i>Status</h6>
-                      <h4>
-                        Quel note sur 10 donner vous a votre etablissement (<small>cette information nous aidera pour un sondage afin d'aider d'autre personne</small> ) 
-                      </h4>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Ton etablissement</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          {{ user.etablissement.nom }}
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">dans la ville de :</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          {{ user.etablissement.ville.nom }}
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Type d'etablissement</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          {{ user.etablissement.type }}
+                        </div>
+                      </div>
+                      <hr>
+                      <h5>
+                        Quel note sur 5 donner vous a votre etablissement (<small>cette information nous aidera pour un sondage afin d'aider d'autre personne</small> ) 
+                      </h5>
                       <br>
-                      <h4>0
-                        <input type="radio" name="schoolNotation" value="0">
-                      </h4><br>
-                      <h4>1
-                        <input type="radio" name="schoolNotation" value="1">
-                      </h4><br>
-                      <h4>2
-                        <input type="radio" name="schoolNotation" value="2">
-                       </h4><br>
-                      <h4>3
-                        <input type="radio" name="schoolNotation" value="3">
-                      </h4><br>
-                      <h4>4
-                        <input type="radio" name="schoolNotation" value="4">
-                      </h4><br>
-                      <h4>5
-                        <input type="radio" name="schoolNotation" value="5">
-                      </h4><br>
-                      <h4>6
-                        <input type="radio" name="schoolNotation" value="6">
-                      </h4><br>
-                      <h4>7
-                        <input type="radio" name="schoolNotation" value="7">
-                      </h4><br>
-                      <h4>8
-                        <input type="radio" name="schoolNotation" value="8">
-                      </h4><br>
-                      <h4>9
-                        <input type="radio" name="schoolNotation" value="9">
-                      </h4><br>
-                      <h4>10
-                        <input type="radio" name="schoolNotation" value="10">
-                      </h4><br>
+                      <h4>0<input type="radio" name="schoolNotation" value="0"></h4>
+                      <h4>1<input type="radio" name="schoolNotation" value="1"></h4>
+                      <h4>2<input type="radio" name="schoolNotation" value="2"></h4>
+                      <h4>3<input type="radio" name="schoolNotation" value="3"></h4>
+                      <h4>4<input type="radio" name="schoolNotation" value="4"></h4>
+                      <h4>5<input type="radio" name="schoolNotation" value="5"></h4><br>
                       
                     </div>
                   </div>

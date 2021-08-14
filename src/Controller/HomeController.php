@@ -39,23 +39,5 @@ class HomeController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/profile/{id}/edit", name="edit-profile", methods={"GET","POST"})
-     */
-    public function edit(Request $request, User $user): Response
-    {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('profile/edit.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
-    }
+    
 }

@@ -12,8 +12,8 @@ class RequeteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titre')
-            ->add('description')
+            // ->add('titre')
+            // ->add('description')
         ;
     }
 

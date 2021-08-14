@@ -40,6 +40,9 @@ class RequeteController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $request->request->all();
+            $requete->setTitre($data['titre'])
+                ->setDescription($data['description']);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($requete);
             $entityManager->flush();
@@ -66,12 +69,18 @@ class RequeteController extends AbstractController
     /**
      * @Route("/{id}/edit", name="requete-edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Requete $requete): Response
+    public function edit(Request $request, Requete $requete, User $user): Response
     {
         $form = $this->createForm(RequeteType::class, $requete);
+        $requete->setCreatedAt(new DateTime());
+        $requete->setAuteur($user);
+        $requete->setEtat('send');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $request->request->all();
+            $requete->setTitre($data['titre'])
+                ->setDescription($data['description']);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('requete-index', [], Response::HTTP_SEE_OTHER);

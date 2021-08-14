@@ -73,6 +73,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $ville;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $noteVille;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $noteEta;
+
     public function __construct()
     {
         $this->requetes = new ArrayCollection();
@@ -265,6 +275,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setVille(?Ville $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getNoteVille(): ?int
+    {
+        return $this->noteVille;
+    }
+
+    public function setNoteVille(?int $noteVille): self
+    {
+        $this->noteVille = $noteVille;
+
+        return $this;
+    }
+
+    public function getNoteEta(): ?int
+    {
+        return $this->noteEta;
+    }
+
+    public function setNoteEta(?int $noteEta): self
+    {
+        $this->noteEta = $noteEta;
 
         return $this;
     }

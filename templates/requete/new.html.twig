@@ -3,9 +3,31 @@
 {% block title %}New Requete{% endblock %}
 
 {% block body %}
-    <h1>Create new Requete</h1>
+<div class="app-wrapper">
+	    
+    <div class="app-content pt-3 p-md-3 p-lg-4">
+        <div class="container-xl">
+            <h1>Create new Requete</h1>
 
-    {{ include('requete/_form.html.twig') }}
+            <form class="auth-form auth-signup-form" method="post">  
+                {{ form_start(form) }}       
+                <div class="email mb-3">
+                    <label class="sr-only" for="signup-name">Titre</label>
+                    <input id="signup-name" name="titre" type="text" class="form-control signup-name" placeholder="titre" required="required">
+                </div>
+                <div class="email mb-3">
+                    <label class="sr-only" for="signup">Description</label>
+                    <input id="signup-name" name="descrition" type="text" class="form-control signup-name" placeholder="description" required="required">
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Create</button>
+                </div>
+                {{ form_end(form) }}
+            </form><!--//auth-form-->
 
-    <a href="{{ path('requete-index') }}">back to list</a>
+            <a href="{{ path('requete-index') }}" class="btn btn-secondary">back to list</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
