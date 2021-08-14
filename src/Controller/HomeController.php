@@ -31,9 +31,16 @@ class HomeController extends AbstractController
     /**
      * @Route("/profile/{id}", name="profile")
      */
-    public function profile(User $user): Response
+    public function profile(User $user, Request $request): Response
     {
-        
+        if($request->isMethod('POST')){
+            $data = $request->request->all();
+            $user->setNoteVille($data['townNotation']);
+            $user->setNoteEta($data['schoolNotation']);
+
+            $entityManager = $this->getDoctrine()->getManager()->flush();
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
+        }
         return $this->render('profile/user.html.twig', [
             "user" => $user,
         ]);

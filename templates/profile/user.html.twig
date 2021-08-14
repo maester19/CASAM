@@ -47,6 +47,35 @@
                   </li>
                 </ul>
               </div>
+              <div class="card mt-3 p-2">
+                <h5>Aider nous en attribuant une note a votre ville et votre etablissement</h5>
+                <hr>
+                <form method="post">
+                  <div class="email mb-3">
+                    <label class="sr-only" for="signup-name">Your note for your town</label>
+                    <select name="townNotation" id="town" class="form-control signup-name">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+                  <div class="email mb-3">
+                    <label class="sr-only" for="signup-name">Your note for your school</label>
+                    <select name="schoolNotation" id="town" class="form-control signup-name">
+                      <option value="0">0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+                  <button class="btn btn-primary">valider le vote</button>
+                </form>
+              </div>
             </div>
             <div class="col-md-8">
               <div class="card mb-3">
@@ -145,16 +174,14 @@
                         </div>
                       </div>
                       <hr>
-                      <h5>
-                        Quel note sur 5 donner vous a votre ville (<small>cette information nous aidera pour un sondage afin d'aider d'autre personne</small> ) 
-                      </h5>
-                      <br>
-                      <h4>0<input type="radio" name="townNotation" value="0"></h4>
-                      <h4>1<input type="radio" name="townNotation" value="1"></h4>
-                      <h4>2<input type="radio" name="townNotation" value="2"></h4>
-                      <h4>3<input type="radio" name="townNotation" value="3"></h4>
-                      <h4>4<input type="radio" name="townNotation" value="4"></h4>
-                      <h4>5<input type="radio" name="townNotation" value="5"></h4><br>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Note de la ville</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          {{ user.noteVille }}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -189,17 +216,14 @@
                         </div>
                       </div>
                       <hr>
-                      <h5>
-                        Quel note sur 5 donner vous a votre etablissement (<small>cette information nous aidera pour un sondage afin d'aider d'autre personne</small> ) 
-                      </h5>
-                      <br>
-                      <h4>0<input type="radio" name="schoolNotation" value="0"></h4>
-                      <h4>1<input type="radio" name="schoolNotation" value="1"></h4>
-                      <h4>2<input type="radio" name="schoolNotation" value="2"></h4>
-                      <h4>3<input type="radio" name="schoolNotation" value="3"></h4>
-                      <h4>4<input type="radio" name="schoolNotation" value="4"></h4>
-                      <h4>5<input type="radio" name="schoolNotation" value="5"></h4><br>
-                      
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0">Note de l'etablissement</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          {{ user.noteEta }}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
